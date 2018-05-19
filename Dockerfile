@@ -31,8 +31,9 @@ FROM prebuild
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 WORKDIR /home/theia
-COPY --chown=theia:theia --from=prebuild /home/theia /home/theia
-RUN git config --global user.email "you@example.com" \
+COPY --from=prebuild /home/theia /home/theia
+RUN chown -R theia:theia /home/theia  \
+    && git config --global user.email "you@example.com" \
     && git config --global user.name "Your Name"
 EXPOSE 3000
 # USER theia
