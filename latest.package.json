@@ -1,0 +1,28 @@
+{
+    "private": true,
+    "dependencies": {
+        "typescript": "latest",
+        "@theia/editorconfig": "latest",
+        "@theia/typescript": "latest",
+        "@theia/navigator": "latest",
+        "@theia/terminal": "latest",
+        "@theia/outline-view": "latest",
+        "@theia/preferences": "latest",
+        "@theia/messages": "latest",
+        "@theia/mini-browser": "latest",
+        "@theia/git": "latest",
+        "@theia/file-search": "latest",
+        "@theia/markers": "latest",
+        "@theia/preview": "latest",
+        "@theia/process": "latest",
+        "@theia/python": "latest",
+        "@theia/userstorage": "latest",
+        "@theia/workspace": "latest",
+        "@theia/search-in-workspace": "latest",
+        "@theia/variable-resolver": "latest",
+        "@theia/task": "latest"
+    },
+    "devDependencies": {
+        "@theia/cli": "latest"
+    }
+}
