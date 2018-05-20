@@ -12,9 +12,10 @@ RUN pip install -U pip && pip3 install -U pip \
 ARG version=latest
 
 WORKDIR /home/theia
-# or: addgroup theia && \  -G theia
-RUN adduser -s /bin/bash -D theia && \
-    chmod g+rw /home \
+# or: && \  -G theia
+RUN  addgroup -r -g 472 theia \
+    && adduser -r -u 472 -g theia -s /bin/bash -D theia \
+    && chmod g+rw /home \
     && chown theia:theia /home/theia \
     && echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default; \
     chmod 0440 /etc/sudoers.d/default
