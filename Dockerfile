@@ -13,12 +13,13 @@ ARG version=latest
 
 WORKDIR /home/theia
 # or: && \  -G theia
-RUN  addgroup -r -g 472 theia \
-    && adduser -r -u 472 -g theia -s /bin/bash -D theia \
+RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
+    && chmod 0440 /etc/sudoers.d/default \
+    && addgroup -g 473 theia \
+    && adduser -u 473 -G theia -s /bin/bash -D theia \
     && chmod g+rw /home \
-    && chown theia:theia /home/theia \
-    && echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default; \
-    chmod 0440 /etc/sudoers.d/default
+    && chown theia:theia /home/theia
+    
 COPY setupzsh .    
 COPY $version.package.json ./package.json
 RUN su-exec theia:theia zsh setupzsh
