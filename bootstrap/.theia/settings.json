@@ -1,0 +1,18 @@
+{
+    // Enable/Disable the line numbers in the monaco editor
+    "editor.lineNumbers": "on",
+    // Tab width in the editor
+    "editor.tabSize": 4,
+    "navigator.exclude": {
+        ".Trash*": true,
+        ".git": true,
+        "*.egg-info": true,
+        "__pycache__": true,
+        "*.pyc": true
+    },
+    // "files.watcherExclude": "path/to/file"
+    "editor.cursorStyle": "line",
+    "editor.links": false,
+    "editor.quickSuggestionsDelay": 200,
+    "editor.autoIndent": true
+}
