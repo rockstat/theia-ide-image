@@ -7,8 +7,7 @@ RUN apk add --no-cache ca-certificates \
         su-exec sudo 
 RUN pip install -U pip && pip3 install -U pip \
     && pip3 install 'git+https://github.com/bcb/jsonrpcclient.git@master#egg=jsonrpcclient' \
-    && pip3 install 'python-language-server[pycodestyle]' \
-    && pip3 install 'git+https://github.com/rockstat/band#egg=band'
+    && pip3 install 'python-language-server[pycodestyle]'
 ARG version=latest
 
 WORKDIR /home/theia
@@ -33,6 +32,7 @@ FROM prebuild
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 WORKDIR /home/theia
+RUN pip3 install 'git+https://github.com/rockstat/band#egg=band'
 COPY --from=prebuild /home/theia /home/theia
 RUN chown -R theia:theia /home/theia  \
     && git config --global user.email "you@example.com" \
