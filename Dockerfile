@@ -33,6 +33,7 @@ ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 WORKDIR /home/theia
 RUN pip3 install 'git+https://github.com/rockstat/band#egg=band'
+RUN pip3 install arrow
 COPY --from=prebuild /home/theia /home/theia
 RUN chown -R theia:theia /home/theia  \
     && git config --global user.email "you@example.com" \
