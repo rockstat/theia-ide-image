@@ -13,5 +13,6 @@
     "editor.cursorStyle": "line",
     "editor.links": false,
     "editor.quickSuggestionsDelay": 200,
-    "editor.autoIndent": true
+    "editor.autoIndent": true,
+    "files.watcherExclude": "/home/theia/project/sources_ro"
 }
