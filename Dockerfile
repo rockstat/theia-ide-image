@@ -1,7 +1,7 @@
 FROM node:8-alpine as prebuild
 RUN apk add --no-cache ca-certificates \
         make gcc g++ coreutils \
-        python py2-pip python3 python3-dev python3-pip \
+        python py2-pip python3 python3-dev \
         nano gzip curl \
         bash zsh git openssh-client \
         su-exec sudo 
