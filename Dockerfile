@@ -28,7 +28,7 @@ ARG RELEASE=master
 # ENV SHELL /bin/bash
 ENV SHELL /bin/zsh
 ENV USE_LOCAL_GIT true
-
+ADD requirements.txt .
 RUN echo "VERSION $RELEASE" && pip3 install 'python-language-server[pycodestyle]' \
     && pip3 install 'git+https://github.com/rockstat/band#egg=band' \
     && pip3 install -r requirements.txt
