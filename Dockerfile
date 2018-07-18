@@ -1,44 +1,41 @@
 FROM node:8-alpine as prebuild
 RUN apk add --no-cache ca-certificates \
         make gcc g++ coreutils \
-        python py2-pip python3 python3-dev \
+        python py2-pip python3 python3-dev python3-pip \
         nano gzip curl \
         bash zsh git openssh-client \
         su-exec sudo 
-RUN pip install -U pip && pip3 install -U pip \
-    && pip3 install 'git+https://github.com/bcb/jsonrpcclient.git@master#egg=jsonrpcclient' \
-    && pip3 install 'python-language-server[pycodestyle]'
-ARG version=latest
 
+# Theia user
 WORKDIR /home/theia
-# or: && \  -G theia
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod 0440 /etc/sudoers.d/default \
     && addgroup -g 473 theia \
     && adduser -u 473 -G theia -s /bin/bash -D theia \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
-    
+# setup zsh
 COPY setupzsh .    
-COPY $version.package.json ./package.json
+COPY latest.package.json ./package.json
 RUN su-exec theia:theia zsh setupzsh
-RUN yarn
-RUN yarn theia build
-RUN    rm -rf ./node_modules/electron && \
-    yarn cache clean;
-
+# building theia
+RUN yarn && yarn theia build && rm -rf ./node_modules/electron && yarn cache clean;
+# cant set befire
 ENV NODE_ENV production
-FROM prebuild
-ENV SHELL /bin/bash
+# cache buster
+ARG RELEASE=master
+# FROM prebuild
+# ENV SHELL /bin/bash
+ENV SHELL /bin/zsh
 ENV USE_LOCAL_GIT true
-WORKDIR /home/theia
-RUN pip3 install 'git+https://github.com/rockstat/band#egg=band'
-RUN pip3 install arrow
-COPY --from=prebuild /home/theia /home/theia
+
+RUN echo "VERSION $RELEASE" && pip3 install 'python-language-server[pycodestyle]' \
+    && pip3 install 'git+https://github.com/rockstat/band#egg=band' \
+    && pip3 install -r requirements.txt
+
 RUN chown -R theia:theia /home/theia  \
     && git config --global user.email "you@example.com" \
     && git config --global user.name "Your Name"
+
 EXPOSE 3000
-# USER theia
-ENV SHELL /bin/zsh
 CMD ["su-exec", "theia:theia", "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0", "--port=8000" ]
