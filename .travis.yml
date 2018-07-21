@@ -11,11 +11,10 @@ after_script:
 - docker images
 
 before_deploy:
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 - docker tag theia-build $DOCKER_USERNAME/theia-build
 
 deploy:
-  # skip_cleanup: true
   provider: script
   script: docker push $DOCKER_USERNAME/theia-build
   on:
