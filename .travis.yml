@@ -1,0 +1,26 @@
+sudo: required
+dist: trusty
+
+services:
+- docker
+
+script:
+- docker build -t theia-build .
+
+after_script:
+- docker images
+
+before_deploy:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker tag theia-build $DOCKER_USERNAME/theia-build
+
+deploy:
+  # skip_cleanup: true
+  provider: script
+  script: docker push $DOCKER_USERNAME/theia-build
+  on:
+    branch: master
+
+# helpful links
+# https://medium.com/mobileforgood/patterns-for-continuous-integration-with-docker-on-travis-ci-71857fff14c5
+
