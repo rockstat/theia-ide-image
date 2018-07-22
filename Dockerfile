@@ -41,4 +41,4 @@ RUN chown -R theia:theia /home/theia  \
     && git config --global user.name ${USERNAME}}
 # readable logs
 EXPOSE 8080
-CMD "su-exec theia:theia yarn theia start /home/theia/project --hostname=0.0.0.0 --port=$PORT"
+CMD /bin/bash -c "su-exec theia:theia yarn theia start /home/theia/project --hostname=0.0.0.0 --port=$PORT"
