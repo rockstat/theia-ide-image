@@ -15,6 +15,7 @@ before_deploy:
 
 deploy:
   provider: script
+  skip_cleanup: true
   script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   on:
     branch: master
