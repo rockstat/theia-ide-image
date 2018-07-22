@@ -10,7 +10,7 @@ services:
 - docker
 
 script:
-- docker build -t PROJECT_NAME .
+- docker build -t $PROJECT_NAME .
 
 after_script:
 - docker images
