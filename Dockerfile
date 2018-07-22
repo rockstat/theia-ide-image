@@ -22,6 +22,7 @@ RUN su-exec theia:theia zsh setupzsh
 RUN yarn && yarn theia build && rm -rf ./node_modules/electron && yarn cache clean;
 # cant set befire
 ENV NODE_ENV production
+ENV PORT 8080
 # cache buster
 ARG RELEASE=master
 # FROM prebuild
@@ -32,10 +33,12 @@ ADD requirements.txt .
 RUN echo "VERSION $RELEASE" && pip3 install 'python-language-server[pycodestyle]' \
     && pip3 install 'git+https://github.com/rockstat/band#egg=band' \
     && pip3 install -r requirements.txt
-
+# git args
+ARG EMAIL="you@example.com"
+ARG USERNAME="Rockstat User"
 RUN chown -R theia:theia /home/theia  \
-    && git config --global user.email "you@example.com" \
-    && git config --global user.name "Your Name"
-
-EXPOSE 3000
-CMD ["su-exec", "theia:theia", "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0", "--port=8000" ]
+    && git config --global user.email ${EMAIL} \
+    && git config --global user.name ${USERNAME}}
+# readable logs
+EXPOSE 8080
+CMD "su-exec theia:theia yarn theia start /home/theia/project --hostname=0.0.0.0 --port=$PORT"
