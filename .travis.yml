@@ -1,22 +1,28 @@
 sudo: required
 dist: trusty
 
+env:
+  global:
+    - PROJECT_NAME=theia-build
+    - IMAGE_NAME=$DOCKER_USERNAME/$PROJECT_NAME
+
 services:
 - docker
 
 script:
-- docker build -t theia-build .
+- docker build -t PROJECT_NAME .
 
 after_script:
 - docker images
 
 before_deploy:
-- docker tag theia-build $DOCKER_USERNAME/theia-build
+- docker tag $PROJECT_NAME $IMAGE_NAME
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 
 deploy:
   provider: script
   skip_cleanup: true
-  script: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  script: docker push "$IMAGE_NAME"
   on:
     branch: master
 
