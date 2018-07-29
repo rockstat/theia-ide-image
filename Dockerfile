@@ -21,8 +21,8 @@ RUN su-exec theia:theia zsh setupzsh
 # building theia
 RUN yarn && yarn theia build && rm -rf ./node_modules/electron && yarn cache clean;
 # cant set befire
-ENV NODE_ENV production
-ENV PORT 8080
+ENV NODE_ENV=production
+ENV PORT=8080
 # cache buster
 ARG RELEASE=master
 # FROM prebuild
@@ -41,4 +41,4 @@ RUN chown -R theia:theia /home/theia  \
     && git config --global user.name ${USERNAME}}
 # readable logs
 EXPOSE 8080
-CMD /bin/bash -c "su-exec theia:theia yarn theia start /home/theia/project --hostname=0.0.0.0 --port=$PORT"
+CMD /bin/bash -c "su-exec theia:theia yarn theia start /home/theia/project --hostname=0.0.0.0 --port=8000"
