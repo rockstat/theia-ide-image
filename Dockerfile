@@ -36,6 +36,7 @@ RUN echo "VERSION $RELEASE" && pip3 install 'python-language-server[pycodestyle]
 # git args
 ENV EMAIL="you@example.com"
 ENV USERNAME="Rockstat User"
+ENV JSON_LOGS=0
 RUN chown -R theia:theia /home/theia  \
     && git config --global user.email ${EMAIL} \
     && git config --global user.name ${USERNAME}}
