@@ -3,7 +3,7 @@ dist: trusty
 
 env:
   global:
-    - PROJECT_NAME=theia-build
+    - PROJECT_NAME=theia-ide
     - ORG=rockstat
     - IMAGE_NAME=$ORG/$PROJECT_NAME
 
