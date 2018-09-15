@@ -17,6 +17,8 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
 
+ADD run.sh setupzsh.sh requirements.txt latest.package.json bootstrap ./
+
 RUN mv latest.package.json package.json \
     && yarn \
     && yarn theia build \
@@ -30,12 +32,12 @@ ENV PORT_THEIA=${PORT_THEIA:-8000} \
     USE_LOCAL_GIT=true \
     NODE_ENV=production
 
-ADD run.sh setupzsh.sh requirements.txt bootstrap latest.package.json ./
 RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
     && git config --global user.email ${EMAIL:-"name@example.com"} \
     && git config --global user.name ${USERNAME:-"Name Surname"}} \
     && su-exec theia:theia zsh setupz.sh
 
-EXPOSE 8080
+EXPOSE 8080 8000
+
 CMD /bin/bash -c "su-exec theia:theia ./run.sh"
