@@ -1,5 +1,8 @@
 git+https://github.com/rockstat/band#egg=band
 python-language-server[pycodestyle]
 arrow
-
-
+msgpack
+ujson
+prodict
+simplech
+asimplech
