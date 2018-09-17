@@ -6,8 +6,8 @@ RUN apk add --no-cache ca-certificates \
         bash zsh git openssh-client \
         su-exec sudo 
 
-ARG RST_UID=765
-ARG RST_GID=765
+ENV RST_UID=765
+ENV RST_GID=765
 
 WORKDIR /home/theia
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
@@ -40,4 +40,4 @@ RUN chown -R theia:theia /home/theia  \
 
 EXPOSE 8080 8000
 
-CMD /bin/bash -c "su-exec theia:theia ./run.sh"
+CMD /home/theia/run.sh
