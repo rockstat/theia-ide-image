@@ -17,7 +17,7 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
 
-ADD run.sh setupz.sh requirements.txt latest.package.json bootstrap ./
+ADD --chown=theia:theia . .
 
 RUN mv latest.package.json package.json \
     && yarn \
