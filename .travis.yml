@@ -1,32 +1,26 @@
 sudo: required
 dist: trusty
-
+language: node_js
+node_js: '8'
+cache: yarn
 env:
   global:
-    - PROJECT_NAME=theia-ide
-    - ORG=rockstat
-    - IMAGE_NAME=$ORG/$PROJECT_NAME
-
+  - PROJECT_NAME=theia-ide
+  - ORG=rockstat
+  - IMAGE_NAME=$ORG/$PROJECT_NAME
+  - secure: cSD+iTVvVzfdjDu7LyzHoTgW0PSxfRsONaDtmmraAt16F/LLLLbPXtOUCW+krjuAsSdGJMW+szRJGc12rQhRlQAzV0ppHj+Ja/uLEkiS6kSajMzcqCJyX7gyK6ufUvWyx8GjETQ86ffuUMmUR/kYl/UCS/MJqIwDj+n3/0T22T15AZIjDL+UNcD7EZkhFuFd2yFPxqArONhfm5ePOLjoNQ0qzFhqvC9kg/pFg7oC1e0G95lDQn7OJnPXoUX+fU7MlBEJqKZO1XWMnpYCBfNOkfqW/45BYP+oZb0sYEl2g+fLORUULMGiR+15vgojbbttaHNNHjYD5im+dz8bkOATz+l7E57zxK+bnWm8LRHhj19pruZZeAAJjV9WpMs0FvTOLZh5OcQ++vcs1yqCwe3RkAwTrMYu+9MtT2zjG9WtgJ73JfafvrFd3DaZMfo5jmvwe3pgOS6B0dSB4eI7GIhdQIKEuDvNSBC4ju7FsvxQBVY8Wt8uEcvwlmWzgfFgckbJ58haPey7WOkRk8Dlt+rPkSpDmkhdH26OfaIzQ04yEJ/R2vh8afcjeO8k+SV0JVBc9n8Xz8qRpl3wI4g3CFnZGMtbYB/xdcoAR2inquQBDBeGFF8qH8qSsIwZJLXA3BJVwZqfjAvjR3Eoks4sKgAsuFLZ3V8FehQWmdl2XEjWvx8=
 services:
 - docker
-
 script:
 - docker build -t $PROJECT_NAME .
-
 after_script:
 - docker images
-
 before_deploy:
 - docker tag $PROJECT_NAME $IMAGE_NAME
 - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-
 deploy:
   provider: script
   skip_cleanup: true
   script: docker push "$IMAGE_NAME"
   on:
     branch: master
-
-# helpful links
-# https://medium.com/mobileforgood/patterns-for-continuous-integration-with-docker-on-travis-ci-71857fff14c5
-
