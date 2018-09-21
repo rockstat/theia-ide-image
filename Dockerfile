@@ -40,4 +40,4 @@ RUN chown -R theia:theia /home/theia  \
 
 EXPOSE 8080 8000
 
-CMD /home/theia/run.sh
+CMD /home/theia/.bin/run.sh
