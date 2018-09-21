@@ -9,6 +9,7 @@ RUN apk add --no-cache ca-certificates \
 ENV RST_UID=765
 ENV RST_GID=765
 
+
 WORKDIR /home/theia
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod 0440 /etc/sudoers.d/default \
@@ -19,6 +20,7 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
 
 ADD --chown=theia:theia . .
 
+RUN yarn config set registry=//registry.npmjs.org/:_authToken=${GITHUB_ACCESS_TOKEN:-""}
 RUN mv latest.package.json package.json \
     && yarn \
     && yarn theia build \
@@ -36,7 +38,7 @@ RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
     && git config --global user.email ${EMAIL:-"name@example.com"} \
     && git config --global user.name ${USERNAME:-"Name Surname"}} \
-    && su-exec theia:theia zsh setupz.sh
+    && su-exec theia:theia zsh .bin/setupz.sh
 
 EXPOSE 8080 8000
 
