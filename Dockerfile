@@ -26,7 +26,7 @@ RUN mv latest.package.json package.json \
     && yarn cache clean;
 
 ENV PORT_THEIA=${PORT_THEIA:-8000} \
-    PORT=${PORT_USER:-8080} \
+    PORT=${PORT_DEV:-8080} \
     JSON_LOGS=0 \
     SHELL=/bin/zsh \
     USE_LOCAL_GIT=true \
