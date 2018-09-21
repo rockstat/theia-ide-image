@@ -2,7 +2,9 @@ sudo: required
 dist: trusty
 language: node_js
 node_js: '8'
-cache: yarn
+cache:
+  yarn: true
+
 env:
   global:
   - PROJECT_NAME=theia-ide
@@ -13,6 +15,9 @@ env:
   - secure: x/9UXnbTcUhHpdSo4dNHQhR4wtqMfqtMcYLEDy4aQfUfCyIPq+ixS2tJkbfdaPr8d3SQhkiHiJE1qcmw6zXnPnZXGYv5gSEM9cj50A1gwCSt2y10KgMabVx/fEcPk9v7Ew2VEzP+s22OLSMhzsvfjsILnQUgLBq+AGo08qo9jeHlu1iIqIUT6kZAsr+3qVHx80kD+DAaFXskogvv27Z9Z+IGEr65K47Or/Lkv4gk4JTxScavpGryATBKDP+E6rYlJ/aJ3Dk15QyvwEYuVY+/ZFC+mduVHBbuqSgOzUssOrjBITHLTspREBJZbzndknp0lylA0Vsc0y4C3WgIxFN8Jykh6LuL9yWcrZlB/p8tDhFTghA665pUa/CZ/NCfWENxdqC8ziJTsXh3reEWVQVkTlZSvYufiQDqDtyxT7isZTqDucE7it+q98HEU1vt4+c2nV3wDGRdCXk4r2OpyYW5865b6m40ifJFZI1JIlMZwyoAxtGWNkxfI5aVtnoPdNWo6DXGKNCfsvas3UlKZl/DEFPxtVWS3NktbqTfQaf8MdOi+n7ohtoD3sWsLN5vX+OXKi5TQGYt+vKDoSU5wl8rGxPC30IF8Tr6fIrkutUvJpSRBz/SvaPlsX18osnTFfIEM27bTxvW8lbqdLg2Yu0Ipf2oRxbuxC07Rcsg3V1Dks8=
 services:
 - docker
+before_install:
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9
+- export PATH="$HOME/.yarn/bin:$PATH"
 script:
 - docker build -t $PROJECT_NAME .
 after_script:
