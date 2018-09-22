@@ -32,7 +32,8 @@ ENV PORT_THEIA=${PORT_THEIA:-8000} \
     JSON_LOGS=0 \
     SHELL=/bin/zsh \
     USE_LOCAL_GIT=true \
-    NODE_ENV=production
+    NODE_ENV=production \
+    WORKSPACE_PATH=/home/theia/project
 
 RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
