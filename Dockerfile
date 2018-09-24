@@ -20,7 +20,7 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
 
 ADD --chown=theia:theia . .
 
-RUN yarn config set registry=//registry.npmjs.org/:_authToken=${GITHUB_ACCESS_TOKEN:-""}
+RUN yarn config set registry=//registry.npmjs.org/
 RUN mv latest.package.json package.json \
     && yarn \
     && yarn theia build \
@@ -37,8 +37,6 @@ ENV PORT_THEIA=${PORT_THEIA:-8000} \
 
 RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
-    && git config --global user.email ${EMAIL:-"name@example.com"} \
-    && git config --global user.name ${USERNAME:-"Name Surname"}} \
     && su-exec theia:theia zsh .bin/setupz.sh
 
 EXPOSE 8080 8000
