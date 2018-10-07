@@ -6,8 +6,8 @@ RUN apk add --no-cache ca-certificates \
         bash zsh git openssh-client \
         su-exec sudo 
 
-ENV RST_UID=765
-ENV RST_GID=765
+ENV RST_UID=472
+ENV RST_GID=472
 
 
 WORKDIR /home/theia
