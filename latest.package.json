@@ -2,24 +2,22 @@
     "private": true,
     "dependencies": {
         "typescript": "latest",
-        "@theia/editorconfig": "latest",
-        "@theia/typescript": "latest",
-        "@theia/json": "latest",
-        "@theia/terminal": "latest",
-        "@theia/preferences": "latest",
-        "@theia/messages": "latest",
-        "@theia/mini-browser": "latest",
-        "@theia/git": "latest",
-        "@theia/callhierarchy": "latest",
-        "@theia/file-search": "latest",
-        "@theia/search-in-workspace": "latest",
-        "@theia/markers": "latest",
-        "@theia/preview": "latest",
-        "@theia/python": "latest",
-        "@theia/workspace": "latest",
-        "@theia/textmate-grammars": "latest"
+        "@theia/typescript": "next",
+        "@theia/navigator": "next",
+        "@theia/terminal": "next",
+        "@theia/outline-view": "next",
+        "@theia/preferences": "next",
+        "@theia/messages": "next",
+        "@theia/git": "next",
+        "@theia/file-search": "next",
+        "@theia/markers": "next",
+        "@theia/preview": "next",
+        "@theia/search-in-workspace": "next",
+        "@theia/json": "next",
+        "@theia/textmate-grammars": "next",
+        "@theia/mini-browser": "next"
     },
     "devDependencies": {
-        "@theia/cli": "latest"
+        "@theia/cli": "next"
     }
 }

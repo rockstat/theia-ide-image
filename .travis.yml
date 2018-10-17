@@ -22,6 +22,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ".bin/docker_push"
+  script: ".bootstrap/.bin/docker_push"
   on:
     branch: master
