@@ -12,8 +12,7 @@ env:
 services:
 - docker
 script:
-- docker pull $IMAGE_NAME
-- docker build --cache-from $IMAGE_NAME -t $PROJECT_NAME .
+- docker build -t $PROJECT_NAME .
 after_script:
 - docker images
 before_deploy:
@@ -22,6 +21,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: "docker_push"
+  script: docker push ${IMAGE_NAME}
   on:
     branch: master
