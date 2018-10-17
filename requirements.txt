@@ -1,5 +1,8 @@
 git+https://github.com/rockstat/band#egg=band
-python-language-server[pycodestyle]
+python-language-server
+# python-language-server[pycodestyle]
+flake8
+autopep8
 arrow
 msgpack
 ujson

@@ -22,10 +22,13 @@ ADD --chown=theia:theia . .
 ARG GITHUB_TOKEN
 RUN yarn config set registry=//registry.npmjs.org/
 RUN mv latest.package.json package.json \
-    && yarn \
+    && yarn --cache-folder ./ycache \
     && yarn theia build \
+    && rm -rf ./node_modules \
+    && yarn --production=true \
     && rm -rf ./node_modules/electron \
-    && yarn cache clean;
+    && rm -rf ./ycache \
+    && yarn cache clean
 
 ENV PORT_THEIA=${PORT_THEIA:-8000} \
     PORT=${PORT_DEV:-8080} \
