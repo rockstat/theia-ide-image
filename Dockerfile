@@ -12,7 +12,6 @@ ENV RST_UID=472
 ENV RST_GID=472
 
 WORKDIR /home/theia
-ADD --chown=theia:theia .bootstrap latest.package.json requirements.txt ./
 
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod 0440 /etc/sudoers.d/default \
@@ -20,6 +19,8 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && adduser -u ${RST_UID} -G theia -s /bin/sh -D theia \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
+
+ADD --chown=theia:theia .bootstrap latest.package.json requirements.txt ./
 
 
 ARG GITHUB_TOKEN

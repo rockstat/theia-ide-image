@@ -3,9 +3,7 @@
     "dependencies": {
         "typescript": "latest",
         "@theia/editorconfig": "latest",
-        "@theia/extension-manager": "latest",
         "@theia/typescript": "latest",
-        "@theia/navigator": "latest",
         "@theia/json": "latest",
         "@theia/terminal": "latest",
         "@theia/preferences": "latest",
@@ -19,8 +17,7 @@
         "@theia/preview": "latest",
         "@theia/python": "latest",
         "@theia/workspace": "latest",
-        "@theia/textmate-grammars": "latest",
-        "@theia/task": "latest"
+        "@theia/textmate-grammars": "latest"
     },
     "devDependencies": {
         "@theia/cli": "latest"
