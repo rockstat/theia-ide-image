@@ -1,7 +1,7 @@
 FROM node:8-alpine as prebuild
 RUN apk add --no-cache ca-certificates \
         make gcc g++ coreutils \
-        python py2-pip python3 python3-dev \
+        python python3 python3-dev \
         gzip curl \
         git openssh-client \
         su-exec sudo \
@@ -18,8 +18,6 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && adduser -u ${RST_UID} -G theia -s /bin/sh -D theia \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
-
-RUN pip install python-language-server flake8 autopep8
 
 ADD --chown=theia:theia . .
 
