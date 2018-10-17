@@ -31,7 +31,7 @@ ENV PORT_THEIA=${PORT_THEIA:-8000} \
     USE_LOCAL_GIT=true \
     WORKSPACE_PATH=/home/theia/project
 
-RUN yarn config set registry=//registry.npmjs.org/
+RUN ls -lh && yarn config set registry=//registry.npmjs.org/
 RUN mv latest.package.json package.json \
     && yarn --cache-folder ./ycache \
     && yarn theia build \
@@ -45,8 +45,8 @@ ENV NODE_ENV=production
 
 RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
-    && su-exec theia:theia zsh ./.bootstrap/bin/setupz.sh
+    && su-exec theia:theia zsh .bootstrap/bin/setupz.sh
 
 EXPOSE 8080 8000
 
-CMD ./.bootstrap/bin/run.sh
+CMD .bootstrap/bin/run.sh
