@@ -6,7 +6,6 @@ RUN apk add --no-cache ca-certificates \
         git openssh-client \
         su-exec sudo \
         zsh
-        
 
 ENV RST_UID=472
 ENV RST_GID=472
@@ -21,7 +20,6 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chown theia:theia /home/theia
 
 ADD --chown=theia:theia .bootstrap/ latest.package.json requirements.txt ./
-
 
 ARG GITHUB_TOKEN
 ENV PORT_THEIA=${PORT_THEIA:-8000} \
@@ -45,8 +43,8 @@ ENV NODE_ENV=production
 
 RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
-    && su-exec theia:theia zsh .bootstrap/bin/setupz.sh
+    && su-exec theia:theia zsh .bin/setupz.sh
 
 EXPOSE 8080 8000
 
-CMD .bootstrap/bin/run.sh
+CMD .bin/run.sh
