@@ -37,6 +37,7 @@ ENV PORT_THEIA=${PORT_THEIA:-8000} \
 
 RUN python3 -m venv py3env \
     && source py3env/bin/activate \
+    && pip install -U pip \
     && pip install -U -r requirements.txt
 
 RUN git clone https://github.com/madiedinro/theia.git theia \

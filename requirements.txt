@@ -1,11 +1,10 @@
 git+https://github.com/rockstat/band#egg=band
 jedi
 rope
-pyls-mypy
-# python-language-server[pycodestyle]
-python-language-server[yapf]
-flake8
-autopep8
+pyls-black
+python-language-server[pycodestyle]
+pyflakes
+# python-language-server[yapf]
 arrow
 msgpack
 ujson
