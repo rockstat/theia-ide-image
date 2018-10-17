@@ -2,3 +2,7 @@
 /dev_build
 /package.json
 /node_modules
+/lib/*
+webpack.config.js
+/src-gen/*
+/yarn.lock

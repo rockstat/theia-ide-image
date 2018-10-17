@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 git config --global user.email ${EMAIL:-"name@example.com"} \
 git config --global user.name ${FULLNAME:-"Name Surname"} \
 cp -nR /home/theia/.bootstrap/.theia "$WORKSPACE_PATH"

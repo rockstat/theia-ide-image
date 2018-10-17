@@ -12,6 +12,8 @@ ENV RST_UID=472
 ENV RST_GID=472
 
 WORKDIR /home/theia
+ADD --chown=theia:theia .bootstrap latest.package.json requirements.txt ./
+
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod 0440 /etc/sudoers.d/default \
     && addgroup -g ${RST_GID} theia \
@@ -19,7 +21,6 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
 
-ADD --chown=theia:theia . .
 
 ARG GITHUB_TOKEN
 ENV PORT_THEIA=${PORT_THEIA:-8000} \
@@ -43,8 +44,8 @@ ENV NODE_ENV=production
 
 RUN pip3 install -U -r requirements.txt
 RUN chown -R theia:theia /home/theia  \
-    && su-exec theia:theia zsh .bin/setupz.sh
+    && su-exec theia:theia zsh ./.bootstrap/bin/setupz.sh
 
 EXPOSE 8080 8000
 
-CMD /home/theia/.bin/run.sh
+CMD ./.bootstrap/bin/run.sh
