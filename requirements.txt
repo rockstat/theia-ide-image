@@ -1,6 +1,9 @@
 git+https://github.com/rockstat/band#egg=band
+jedi
+rope
+pyls-mypy
 # python-language-server[pycodestyle]
-python-language-server
+python-language-server[yapf]
 flake8
 autopep8
 arrow
