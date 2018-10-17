@@ -20,7 +20,7 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod g+rw /home \
     && chown theia:theia /home/theia
 
-ADD --chown=theia:theia .bootstrap latest.package.json requirements.txt ./
+ADD --chown=theia:theia .bootstrap/ latest.package.json requirements.txt ./
 
 
 ARG GITHUB_TOKEN
