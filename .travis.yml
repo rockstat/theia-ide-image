@@ -1,10 +1,6 @@
 sudo: required
 dist: trusty
 language: node_js
-# node_js: '8'
-# cache:
-#   yarn: true
-
 env:
   global:
   - PROJECT_NAME=theia-ide
@@ -13,21 +9,19 @@ env:
   - secure: cSD+iTVvVzfdjDu7LyzHoTgW0PSxfRsONaDtmmraAt16F/LLLLbPXtOUCW+krjuAsSdGJMW+szRJGc12rQhRlQAzV0ppHj+Ja/uLEkiS6kSajMzcqCJyX7gyK6ufUvWyx8GjETQ86ffuUMmUR/kYl/UCS/MJqIwDj+n3/0T22T15AZIjDL+UNcD7EZkhFuFd2yFPxqArONhfm5ePOLjoNQ0qzFhqvC9kg/pFg7oC1e0G95lDQn7OJnPXoUX+fU7MlBEJqKZO1XWMnpYCBfNOkfqW/45BYP+oZb0sYEl2g+fLORUULMGiR+15vgojbbttaHNNHjYD5im+dz8bkOATz+l7E57zxK+bnWm8LRHhj19pruZZeAAJjV9WpMs0FvTOLZh5OcQ++vcs1yqCwe3RkAwTrMYu+9MtT2zjG9WtgJ73JfafvrFd3DaZMfo5jmvwe3pgOS6B0dSB4eI7GIhdQIKEuDvNSBC4ju7FsvxQBVY8Wt8uEcvwlmWzgfFgckbJ58haPey7WOkRk8Dlt+rPkSpDmkhdH26OfaIzQ04yEJ/R2vh8afcjeO8k+SV0JVBc9n8Xz8qRpl3wI4g3CFnZGMtbYB/xdcoAR2inquQBDBeGFF8qH8qSsIwZJLXA3BJVwZqfjAvjR3Eoks4sKgAsuFLZ3V8FehQWmdl2XEjWvx8=
   - secure: HNjO03ANhCbWtHSacCTQDqgyTHDEtarji9vMtnGYmwSi+Uy21NCNgEaHQvn1mAqCRf2uotwbGkN7uYoWunA3X/UA+mXbA8Tm6z9AbD9G5FKWLl2EUgo37ZvnEs2XNDyyhVfV1tZr8gB9RdOBHpdjKqneGjFaV4ypqOf4fo2ozdvXhMziPp51ozJA8g58bpHd3ABqt8QotcvW3N57/UKPF8TJTar0ufDJUNzg3UReDBUJzga4n/gSCsW684xYA8+65y0hfQ3rjG9p4/T6wcVyeWASUHt37KZgP7tHshAWEd6Pv0OAOnk9Q9WjbH4kHqk/9egOQeMsJTEe40EEfRGeL1C/8huN6tapJAQpOjCRnIB/Pm+A5debSIKgGhDhTfdOkzdAk/n5AXPXiNppd86ifMuNy4+OtMkv/aPSP7cMlgJaXhtZIgCu/Z9uOvkF8MZ1HYBTeNq4C2tT2Ifce+ALFVLP3lb6UruiRG75jnSpNKyjrvcwxBrgM0blTDP3X9LH1Jwv/VT3yc3+UYgvpsDgetUgjVijvv2coTrw4N3APNekem9N/hnYfeC50mBGl+QfS1Px7jQNQ/oX+Vq192BIWp2hT8B8glMwcaCnJSYZAUk/Uy9XDX1mi/qkeYRYCnSPFj1LQMFevPTY80r6P8UCuwYW75N3ODpaxhiBGFGMpvI=
   - secure: x/9UXnbTcUhHpdSo4dNHQhR4wtqMfqtMcYLEDy4aQfUfCyIPq+ixS2tJkbfdaPr8d3SQhkiHiJE1qcmw6zXnPnZXGYv5gSEM9cj50A1gwCSt2y10KgMabVx/fEcPk9v7Ew2VEzP+s22OLSMhzsvfjsILnQUgLBq+AGo08qo9jeHlu1iIqIUT6kZAsr+3qVHx80kD+DAaFXskogvv27Z9Z+IGEr65K47Or/Lkv4gk4JTxScavpGryATBKDP+E6rYlJ/aJ3Dk15QyvwEYuVY+/ZFC+mduVHBbuqSgOzUssOrjBITHLTspREBJZbzndknp0lylA0Vsc0y4C3WgIxFN8Jykh6LuL9yWcrZlB/p8tDhFTghA665pUa/CZ/NCfWENxdqC8ziJTsXh3reEWVQVkTlZSvYufiQDqDtyxT7isZTqDucE7it+q98HEU1vt4+c2nV3wDGRdCXk4r2OpyYW5865b6m40ifJFZI1JIlMZwyoAxtGWNkxfI5aVtnoPdNWo6DXGKNCfsvas3UlKZl/DEFPxtVWS3NktbqTfQaf8MdOi+n7ohtoD3sWsLN5vX+OXKi5TQGYt+vKDoSU5wl8rGxPC30IF8Tr6fIrkutUvJpSRBz/SvaPlsX18osnTFfIEM27bTxvW8lbqdLg2Yu0Ipf2oRxbuxC07Rcsg3V1Dks8=
+  - secure: sgxRAf0mmzjyaeQuEe5H5Qf8c393JhyKpPjkBaSo8bHYwm24trDrxYCEONw5uXDQMf1mWNKl/v9tJlZAaizGVj/y4d7gMeW8VWCSYWXw9Dr9OmCaY2+vgKRhHtozlsrDgAry0BmtJneCaEjC7GXy6tZbarkRLvSxDdmjhdHwKndDCJJO3aYoj7opIC/DXUKgYuBx582ScNJi8XeLXaLz0C1Zu6EoGRZZ8yfkxOzSpMO+7NRZKFqRR4eRcA8DrS/x5uP/c4d4xp3GKFV/BWHtkvM8bXL7BeqkabVbCAUZ/zQ5eYEWVqOJLTPvK1seB02NWKgSmMwSGSs1Qp8J7/x68Jmms7JMoynRBu3uBOlPgkdA4lsw1vi/p/WfFNP5GKezFjyoK3d81MuWkx9nngctFHw9po2M0MoTpe7NOHcdewuMQOkBGb1hElp7mf4gmEozo2lOq6eQQcN3EJtWYqehTTk+ercDNH49E8wDkwYiVGFLEMPCZtaslUifvBjAeZQTF/AqTd9UOv7RozfbvZI7ljat44oB8Efb6g8Lbyb9PrS2jCDEHJdaw07Msx4zd7BvJk7wViLuhtpXWE0wsBQAWe+HSk55woMsOso3847T332xnvYlDx3xpO0TUbUqutRlh+nlke0Bqu3fwCqlP49QTGF54lefaWi4PayajpdDfp8=
 services:
 - docker
-# before_install:
-# - export PATH="$HOME/.yarn/bin:$PATH"
 script:
-- docker build -t $PROJECT_NAME . 
+- docker build -t $PROJECT_NAME .
 after_script:
 - docker images
 before_deploy:
 - docker tag $PROJECT_NAME $IMAGE_NAME
-#- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./.bin/docker_push
+  script: "./.bin/docker_push"
   on:
     branch: master

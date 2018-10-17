@@ -9,7 +9,6 @@ RUN apk add --no-cache ca-certificates \
 ENV RST_UID=472
 ENV RST_GID=472
 
-
 WORKDIR /home/theia
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod 0440 /etc/sudoers.d/default \
@@ -20,6 +19,7 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
 
 ADD --chown=theia:theia . .
 
+ARG GITHUB_TOKEN
 RUN yarn config set registry=//registry.npmjs.org/
 RUN mv latest.package.json package.json \
     && yarn \
