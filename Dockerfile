@@ -1,4 +1,14 @@
 FROM node:8-alpine as prebuild
+
+ARG GITHUB_TOKEN
+
+ENV RST_UID=472 \ 
+    RST_GID=472 \
+    WORKSPACE_PATH=/home/theia/project \
+    BUILD_PATH=/home/theia/.build \
+    THEIA=/home/theia/.build/theia \
+    PYENV=.py3env
+
 RUN apk add --no-cache ca-certificates \
     make gcc g++ coreutils \
     python python3 python3-dev \
@@ -7,48 +17,43 @@ RUN apk add --no-cache ca-certificates \
     su-exec sudo \
     zsh
 
-ENV RST_UID=472
-ENV RST_GID=472
-
 WORKDIR /home/theia
 
 RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && chmod 0440 /etc/sudoers.d/default \
     && addgroup -g ${RST_GID} theia \
     && adduser -u ${RST_UID} -G theia -s /bin/sh -D theia \
-    && chmod g+rw /home \
+    && chmod g+rw /home/theia \
+    && mkdir -p ${HOME}/.build ${HOME}/project  \
     && chown -R theia:theia /home/theia
-
-
-COPY --chown=theia:theia .bootstrap requirements.txt ./
-# COPY --chown=theia:theia theia theia
-# COPY --chown=theia:theia .zprezto .zprezto
 
 USER theia
 
-ARG GITHUB_TOKEN
 ENV PORT_THEIA=${PORT_THEIA:-8000} \
     PORT=${PORT_DEV:-8080} \
     SHELL=/bin/zsh \
     USE_LOCAL_GIT=true \
-    WORKSPACE_PATH=/home/theia/project \
-    THEIA=/home/theia/theia \
     VIRTUAL_ENV_DISABLE_PROMPT=yes
 
-RUN python3 -m venv py3env \
-    && source py3env/bin/activate \
-    && pip install -U pip \
-    && pip install -U -r requirements.txt
+COPY --chown=theia:theia requirements.txt init_zprezto ${BUILD_PATH}/
 
-RUN git clone https://github.com/madiedinro/theia.git theia \
+RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto \ 
+    && ${BUILD_PATH}/init_zprezto 
+
+RUN python3 -m venv $PYENV  \
+    && source $PYENV/bin/activate \
+    && pip install -U pip \
+    && pip install -U -r ${BUILD_PATH}/requirements.txt
+
+COPY --chown=theia:theia package .build/package
+RUN cd ${BUILD_PATH} \
+    && git clone https://github.com/madiedinro/theia.git theia \
     && cd theia \
     && rm -rf examples/* \
-    && mv ../package ./examples \
-    && yarn \
-    && cd examples/package \
-    && yarn run prepare
+    && mv ${BUILD_PATH}/package ./examples \
+    && yarn
 
-RUN cd theia/examples/package \
+RUN cd ${BUILD_PATH}/theia/examples/package \
     && yarn run clean \
     && yarn theia build
 
@@ -64,7 +69,9 @@ RUN cd theia/examples/package \
 # RUN chown -R theia:theia /home/theia \
 #     && su-exec theia:theia zsh .bin/init_zprezto.sh
 
+COPY --chown=theia:theia init_app .build/
+COPY --chown=theia:theia .theia .build/.theia
+
 EXPOSE 8080 8000
 
-RUN zsh .bin/init_zprezto.sh
-CMD .bin/init_app.sh
+CMD ${BUILD_PATH}/init_app

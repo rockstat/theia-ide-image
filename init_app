@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+export JSON_LOGS=0
+export NODE_ENV=production
+source ${PYENV}/bin/activate
+
+git config --global user.email ${EMAIL:-"name@example.com"}
+git config --global user.name ${FULLNAME:-"Name Surname"}
+
+cd ${WORKSPACE_PATH} \
+    && sudo mkdir -p .theia \
+    && sudo chown -R theia:theia .theia \
+    && ls -lah ${BUILD_PATH}/.theia/ \
+    && cp -nR ${BUILD_PATH}/.theia/* ${WORKSPACE_PATH}/.theia \
+
+cd ${BUILD_PATH}/theia/examples/package \
+    && yarn run start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}

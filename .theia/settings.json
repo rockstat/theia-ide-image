@@ -10,8 +10,6 @@
         "__skeletons": true,
         "*.pyc": true
     },
-    "editor.cursorStyle": "line",
-    "editor.links": false,
     "editor.quickSuggestionsDelay": 200,
     "editor.autoIndent": true,
     "files.watcherExclude": "/home/theia/project/sources_ro"
