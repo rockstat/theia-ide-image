@@ -1,9 +1,8 @@
 git+https://github.com/rockstat/band#egg=band
 jedi
-rope
-pyls-black
-python-language-server[pycodestyle]
-pyflakes
+# pyls-black
+python-language-server[rope,pycodestyle,pydocstyle,pyflakes,yapf]
+# autopep8
 # python-language-server[yapf]
 arrow
 msgpack
