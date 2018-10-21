@@ -40,7 +40,9 @@ COPY --chown=theia:theia requirements.txt init_zprezto ${BUILD_PATH}/
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto \ 
     && ${BUILD_PATH}/init_zprezto 
 
-RUN python3 -m venv $PYENV  \
+ARG PY_REQUIREMENTS
+RUN echo "${PY_REQUIREMENTS:-none}" \
+    && python3 -m venv $PYENV  \
     && source $PYENV/bin/activate \
     && pip install -U pip \
     && pip install -U -r ${BUILD_PATH}/requirements.txt
