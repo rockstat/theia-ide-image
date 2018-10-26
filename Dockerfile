@@ -45,6 +45,7 @@ RUN echo "${PY_REQUIREMENTS:-none}" \
     && python3 -m venv $PYENV  \
     && source $PYENV/bin/activate \
     && pip install -U pip \
+    && pip install -U git+https://github.com/rockstat/band@master#egg=band \
     && pip install -U -r ${BUILD_PATH}/requirements.txt
 
 COPY --chown=theia:theia package .build/package
@@ -58,18 +59,6 @@ RUN cd ${BUILD_PATH} \
 RUN cd ${BUILD_PATH}/theia/examples/package \
     && yarn run clean \
     && yarn theia build
-
-# RUN mv latest.package.json package.json \
-#     && yarn --cache-folder ./ycache \
-#     && yarn theia build \
-#     && rm -rf ./node_modules \
-#     && NODE_ENV=production yarn --production=true \
-#     && rm -rf ./node_modules/electron \
-#     && rm -rf ./ycache \
-#     && yarn cache clean
-
-# RUN chown -R theia:theia /home/theia \
-#     && su-exec theia:theia zsh .bin/init_zprezto.sh
 
 COPY --chown=theia:theia init_app .build/
 COPY --chown=theia:theia .theia .build/.theia

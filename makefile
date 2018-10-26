@@ -6,16 +6,12 @@ BAND_BASE=/srv/platform/build/band-framework
 build:
 	docker build -t theia .
 
-tag-latest:
-	docker tag theia rockstat/theia-ide:latest
-
-tag-dev:
-	docker tag theia rockstat/theia-ide:dev
-
 push-latest:
+	docker tag theia rockstat/theia-ide:latest
 	docker push rockstat/theia-ide:latest
 
 push-dev:
+	docker tag theia rockstat/theia-ide:dev
 	docker push rockstat/theia-ide:dev
 
 run_dev:
@@ -25,6 +21,8 @@ run_dev:
 		-v "$(BAND_BASE):/home/theia/project/sources/band_base:cached" \
 		rockstat/theia-ide:dev
 
-sync_test:
+sync_to_common:
 	rsync -a . root@common.dg02.ru:~/theia
 
+build_on_common: sync_to_common
+	ssh root@common.dg02.ru "cd theia && make build"

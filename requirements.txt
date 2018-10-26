@@ -1,4 +1,3 @@
-git+https://github.com/rockstat/band#egg=band
 jedi
 # pyls-black
 python-language-server[rope,pycodestyle,pydocstyle,pyflakes,yapf]
