@@ -4,7 +4,7 @@ BAND_SET=/srv/platform/images/band_set/
 BAND_BASE=/srv/platform/build/band-framework
 
 build:
-	docker build -t theia .
+	docker build -t theia . --no-cache
 
 push-latest:
 	docker tag theia rockstat/theia-ide:latest
