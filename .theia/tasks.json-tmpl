@@ -1,45 +1,4 @@
 {
-    "tasks": [{
-            "label": "[Task] short running test task (~3s)",
-            "processType": "terminal",
-            "cwd": "${workspaceFolder}/packages/task/src/node/test-resources/",
-            "processOptions": {
-                "command": "./task",
-                "args": [
-                    "1",
-                    "2",
-                    "3"
-                ]
-            }
-        },
-        {
-            "label": "[Task] long running test task (~300s)",
-            "processType": "terminal",
-            // "cwd": "${workspaceFolder}/packages/task/src/node/test-resources/",
-            "processOptions": {
-                "command": "sleep",
-                "args": ["300"]
-            }
-        },
-        {
-            "label": "[Task] recursively list files from workspace root",
-            "processType": "terminal",
-            "cwd": "${workspaceFolder}",
-            "processOptions": {
-                "command": "ls",
-                "args": [
-                    "-alR"
-                ]
-            }
-        },
-        {
-            "label": "[Task] Run service: tg_mybot",
-            "processType": "terminal",
-            "cwd": "${workspaceFolder}",
-            "processOptions": {
-                "command": "python3",
-                "args": ["tg_mybot"]
-            }
-        }
+    "tasks": [
     ]
 }

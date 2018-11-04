@@ -21,8 +21,8 @@ run_dev:
 		-v "$(BAND_BASE):/home/theia/project/sources/band_base:cached" \
 		rockstat/theia-ide:dev
 
-sync_to_common:
-	rsync -a . root@common.dg02.ru:~/theia
+sync:
+	source .env && rsync --exclude=.git -a . "$$BUILDER_USER@$$BUILDER:~/build/theia"
 
 build_on_common: sync_to_common
 	ssh root@common.dg02.ru "cd theia && make build"

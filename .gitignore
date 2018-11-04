@@ -10,3 +10,4 @@ webpack.config.js
 /workspace
 /theia
 /.zprezto
+/.env

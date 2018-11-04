@@ -1,3 +1,13 @@
 {
-    "tasks": []
-}
+    "tasks": [
+      {
+        "label": "[Task] Generate Band service",
+        "type": "shell",
+        "cwd": "/home/theia/project/my_images",
+        "command": "cookiecutter",
+        "args": [
+          "git+https://github.com/rockstat/band-skeleton-py"
+        ]
+      }
+    ]
+  }

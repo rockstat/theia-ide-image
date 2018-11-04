@@ -35,7 +35,7 @@ ENV PORT_THEIA=${PORT_THEIA:-8000} \
     USE_LOCAL_GIT=true \
     VIRTUAL_ENV_DISABLE_PROMPT=yes
 
-COPY --chown=theia:theia requirements.txt init_zprezto ${BUILD_PATH}/
+COPY --chown=theia:theia requirements.txt .editorconfig init_zprezto ${BUILD_PATH}/
 
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto \ 
     && ${BUILD_PATH}/init_zprezto 

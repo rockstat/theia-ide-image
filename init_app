@@ -10,8 +10,8 @@ git config --global user.name ${FULLNAME:-"Name Surname"}
 cd ${WORKSPACE_PATH} \
     && sudo mkdir -p .theia \
     && sudo chown -R theia:theia .theia \
-    && ls -lah ${BUILD_PATH}/.theia/ \
     && cp -nR ${BUILD_PATH}/.theia/* ${WORKSPACE_PATH}/.theia \
+    && cp -nR ${BUILD_PATH}/.editorconfig ${WORKSPACE_PATH}/.editorconfig
 
 cd ${BUILD_PATH}/theia/examples/package \
     && yarn run start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}
