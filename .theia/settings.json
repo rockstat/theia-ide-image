@@ -8,7 +8,8 @@
         "__pycache__": true,
         ".skeletons": true,
         "__skeletons": true,
-        "*.pyc": true
+        "*.pyc": true,
+        "*.gignore": true
     },
     "editor.quickSuggestionsDelay": 200,
     "editor.autoIndent": true,
