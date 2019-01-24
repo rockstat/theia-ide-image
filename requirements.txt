@@ -1,5 +1,6 @@
 jedi
 # pyls-black
+git+https://github.com/madiedinro/simple-clickhouse#egg=band
 python-language-server[rope,pycodestyle,pydocstyle,pyflakes,yapf]
 # autopep8
 # python-language-server[yapf]
