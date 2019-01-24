@@ -45,7 +45,8 @@ RUN echo "${PY_REQUIREMENTS:-none}" \
     && python3 -m venv $PYENV  \
     && source $PYENV/bin/activate \
     && pip install -U pip \
-    && pip install -U git+https://github.com/rockstat/band@master#egg=band \
+    && pip install -U 'git+https://github.com/rockstat/band@master#egg=band' \
+    && pip install -U 'git+https://github.com/madiedinro/simple-clickhouse#egg=band' \
     && pip install -U -r ${BUILD_PATH}/requirements.txt
 
 COPY --chown=theia:theia package .build/package
