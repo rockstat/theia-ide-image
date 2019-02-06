@@ -40,6 +40,8 @@ COPY --chown=theia:theia requirements.txt .editorconfig init_zprezto ${BUILD_PAT
 RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zprezto \ 
     && ${BUILD_PATH}/init_zprezto 
 
+
+LABEL band.images.anaconda.version="0.1.1"
 ARG PY_REQUIREMENTS
 RUN echo "${PY_REQUIREMENTS:-none}" \
     && python3 -m venv $PYENV  \
