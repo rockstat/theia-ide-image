@@ -9,3 +9,4 @@ ujson
 prodict
 simplech
 cookiecutter
+bumpversion
