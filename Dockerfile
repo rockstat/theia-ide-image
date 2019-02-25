@@ -12,7 +12,7 @@ ENV RST_UID=472 \
 RUN apk add --no-cache ca-certificates \
     make gcc g++ coreutils \
     python python3 python3-dev \
-    gzip curl \
+    gzip curl nano jq \
     git openssh-client \
     su-exec sudo \
     zsh
