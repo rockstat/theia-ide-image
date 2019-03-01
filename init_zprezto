@@ -6,5 +6,21 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
-echo "alias ls='ls --color=auto'" >> "$HOME/.zshrc" 
+# echo "alias ls='ls --color=auto'" >> "$HOME/.zshrc"
+
+CUST='
+# Customize to your needs...
+alias ls="ls --color=auto"
+
+# collecting info
+BASE_PORT=$PORT
+TTY_NO=$(echo $TTY | tr -dc "0-9")
+
+# exporting terminal-specific port
+export PORT=$(($BASE_PORT + $TTY_NO))
+# patching term no
+export PS1="${PORT}|${PS1:-}"
+'
+
+echo $CUST >> "$HOME/.zshrc"
 
