@@ -1,4 +1,4 @@
-FROM node:10-alpine as prebuild
+FROM python:3.7-alpine3.9
 
 ARG GITHUB_TOKEN
 
@@ -6,13 +6,14 @@ ENV RST_UID=472 \
     RST_GID=472 \
     WORKSPACE_PATH=/home/theia/project \
     BUILD_PATH=/home/theia/.build \
-    THEIA=/home/theia/.build/theia \
     PYENV=.py3env \
+    PATH=/usr/local/bin:$PATH \
     LANG=C.UTF-8
+
 
 RUN apk add --no-cache ca-certificates \
     make gcc g++ coreutils \
-    python python3 python3-dev \
+    nodejs~=10 nodejs-dev~=10 yarn \
     gzip curl nano jq \
     git openssh-client \
     su-exec sudo \
@@ -28,6 +29,8 @@ RUN echo "theia ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/default \
     && mkdir -p ${HOME}/.build ${HOME}/project  \
     && chown -R theia:theia /home/theia
 
+RUN yarn global add node-gyp
+
 USER theia
 
 ENV PORT_THEIA=${PORT_THEIA:-8000} \
@@ -42,21 +45,21 @@ RUN git clone --recursive https://github.com/sorin-ionescu/prezto.git $HOME/.zpr
     && ${BUILD_PATH}/init_zprezto 
 
 
-LABEL band.images.theia.version="0.2.0"
+LABEL band.images.theia.version="1.0.0"
 ARG PY_REQUIREMENTS
 RUN echo "${PY_REQUIREMENTS:-none}" \
     && python3 -m venv $PYENV  \
     && source $PYENV/bin/activate \
-    && pip install -U pip \
     && pip install -U git+https://github.com/rockstat/band@master#egg=band \
     && pip install -U -r ${BUILD_PATH}/requirements.txt
 
+# COPY --chown=theia:theia package .build/package
 
 COPY --chown=theia:theia package/package.json ./.build
-RUN cd ${BUILD_PATH} && yarn --cache-folder ./ycache && rm -rf ./ycache
-RUN  cd ${BUILD_PATH} && yarn theia build
 
-# COPY --chown=theia:theia package .build/package
+RUN cd ${BUILD_PATH} && yarn --cache-folder ./ycache && rm -rf ./ycache
+RUN cd ${BUILD_PATH} && yarn theia build
+
 # RUN cd ${BUILD_PATH} \
 #     && git clone https://github.com/madiedinro/theia.git theia \
     # && cd theia \

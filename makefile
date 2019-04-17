@@ -6,6 +6,9 @@ BAND_BASE=/srv/platform/build/band-framework
 build:
 	docker build -t theia . --no-cache
 
+build2:
+	docker build -t theia -f Dockerfile2 .
+
 push-latest:
 	docker tag theia rockstat/theia-ide:latest
 	docker push rockstat/theia-ide:latest

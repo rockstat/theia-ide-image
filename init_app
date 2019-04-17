@@ -13,9 +13,14 @@ cd ${WORKSPACE_PATH} \
     && cp -nR ${BUILD_PATH}/.theia/* ${WORKSPACE_PATH}/.theia \
     && cp -nR ${BUILD_PATH}/.editorconfig ${WORKSPACE_PATH}/.editorconfig
 
+cd ${WORKSPACE_PATH}
+
 if [[ -x "bootstrap.sh" ]]; then
     ./bootstrap.sh
 fi
 
-cd ${BUILD_PATH}/theia/examples/package \
-    && yarn run start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}
+# cd ${BUILD_PATH}/theia/examples/package \
+    # && yarn run start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}
+
+cd ${BUILD_PATH} \
+    && yarn theia start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}

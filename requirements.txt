@@ -1,6 +1,4 @@
-jedi
-# pyls-black
-python-language-server[rope,pycodestyle,pydocstyle,pyflakes,yapf]
+# python-language-server[rope,pycodestyle,pydocstyle,pyflakes,yapf]
 # autopep8
 # python-language-server[yapf]
 arrow
@@ -10,3 +8,8 @@ prodict
 simplech
 cookiecutter
 bumpversion
+jedi
+# pyls-black
+python-language-server
+flake8
+autopep8
