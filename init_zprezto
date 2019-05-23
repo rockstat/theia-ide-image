@@ -1,18 +1,17 @@
 #!/bin/zsh
 
-
 setopt EXTENDED_GLOB
+set -ex
+
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 
-# echo "alias ls='ls --color=auto'" >> "$HOME/.zshrc"
 
 CUST='
-# Customize to your needs...
-alias ls="ls --color=auto"
+# Implement your requirements...
 
-# collecting info
+# Port selection
 BASE_PORT=$PORT
 TTY_NO=$(echo $TTY | tr -dc "0-9")
 

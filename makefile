@@ -3,8 +3,14 @@ USER_IMAGES=/srv/platform/images/user/
 BAND_SET=/srv/platform/images/band_set/
 BAND_BASE=/srv/platform/build/band-framework
 
+dep_prezto:
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git
+	tar -zcf prezto.tgz ./prezto/
+	rm -rf ./prezto
+
+
 build:
-	docker build -t theia . --no-cache
+	docker build -t theia . #--no-cache
 
 build2:
 	docker build -t theia -f Dockerfile2 .
