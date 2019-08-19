@@ -5,11 +5,11 @@ arrow
 msgpack
 ujson
 prodict
-simplech
+# simplech
 cookiecutter
 bumpversion
-jedi
+# jedi
 # pyls-black
 python-language-server
-flake8
+# flake8
 autopep8

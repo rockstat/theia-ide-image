@@ -117,6 +117,7 @@ ENV NODE_ENV=production
 
 # ##### Python part
 
+RUN sudo apk --no-cache add bash
 RUN /opt/conda/bin/conda upgrade -y pip && \
     /opt/conda/bin/conda config --add channels conda-forge && \
     /opt/conda/bin/conda clean --all

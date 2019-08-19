@@ -11,6 +11,9 @@ done
 CUST='
 # Implement your requirements...
 
+# Humanize logs
+JSON_LOGS=0
+
 # Port selection
 BASE_PORT=$PORT
 TTY_NO=$(echo $TTY | tr -dc "0-9")

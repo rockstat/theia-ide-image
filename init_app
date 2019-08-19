@@ -22,5 +22,4 @@ if [[ -x "bootstrap.sh" ]]; then
     ./bootstrap.sh
 fi
 
-/usr/bin/tini
-cd ${BUILD_PATH} && yarn theia start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}
+cd ${BUILD_PATH} && /usr/bin/tini -v -- yarn theia start ${WORKSPACE_PATH} --hostname=0.0.0.0 --port=${PORT_THEIA}
