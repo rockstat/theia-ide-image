@@ -1,5 +1,6 @@
 /.gitignore
 /.travis.yml
+/.git
 /Dockerfile
 /package.json
 /node_modules
